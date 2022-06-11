@@ -2,7 +2,7 @@ import React from "react";
 import { Button } from "./Button";
 import "../App.css";
 
-export const ButtonArea = () => {
+export const ButtonArea = ({ handleOnClick }) => {
   const obj = [
     {
       label: "1",
@@ -88,6 +88,6 @@ export const ButtonArea = () => {
 
   return obj.map((item, i) => {
     // return <Button key={i} className={item.className} label={item.label} />;
-    return <Button key={i} {...item} />; ///other way
+    return <Button handleOnClick={handleOnClick} key={i} {...item} />; ///other way
   });
 };
