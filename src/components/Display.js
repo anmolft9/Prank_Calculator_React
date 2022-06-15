@@ -1,12 +1,8 @@
 import React from "react";
 
-export const Display = ({ str }) => {
+export const Display = ({ str, isPrank }) => {
+  const clsNm = isPrank ? "Main prank" : "Main";
   return (
-    <input
-      className="Main"
-      type="string"
-      placeholder="0"
-      value={str || "0"}
-    ></input>
+    <input className={clsNm} type="string" placeholder="0" value={str || "0"} />
   );
 };

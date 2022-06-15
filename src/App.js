@@ -2,14 +2,18 @@ import "./App.css";
 import { useState } from "react";
 import { ButtonArea } from "./components/ButtonArea";
 import { Display } from "./components/Display";
+import a from "./a.wav";
 
 const operators = ["+", "-", "*", "/"];
 
 function App() {
   const [str, setStr] = useState("");
   const [lastOperator, setLastOperator] = useState([]); //using state to store the last operator
+  const [isPrank, setPrank] = useState(false);
+  const [audio] = useState(new Audio(a));
 
   const handleOnClick = (val) => {
+    isPrank && setPrank(false);
     if (val === "AC") {
       setStr("");
       return;
@@ -54,14 +58,22 @@ function App() {
   };
 
   const onTotal = () => {
-    const ttl = eval(str);
+    const prankVal = randomNumbers();
+    prankVal > 0 && audio.play() && setPrank(true);
+    const ttl = eval(str) + prankVal;
     setStr(ttl.toFixed(2).toString());
+  };
+
+  const randomNumbers = () => {
+    const num = Math.ceil(Math.random() * 10);
+
+    return num > 3 ? 0 : num;
   };
   return (
     <div className="wrap">
       <div className="circle"></div>
       <div className="container">
-        <Display str={str} />
+        <Display str={str} isPrank={isPrank} />
 
         <ButtonArea handleOnClick={handleOnClick} />
       </div>
