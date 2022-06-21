@@ -8,6 +8,7 @@ const operators = ["+", "-", "*", "/"];
 
 function App() {
   const [str, setStr] = useState("");
+
   const [lastOperator, setLastOperator] = useState([]); //using state to store the last operator
   const [isPrank, setPrank] = useState(false);
   const [audio] = useState(new Audio(a));
